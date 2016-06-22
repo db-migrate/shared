@@ -1,6 +1,6 @@
 {
   "name": "db-migrate-shared",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Shared resources of db-migrate for drivers and also used internally.",
   "main": "index.js",
   "scripts": {
