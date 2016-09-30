@@ -16,7 +16,9 @@ function isIncludedInDown(migration, destination) {
 
   var migrationTest = migration.name.substring(0, Math.min(migration.name.length, destination.length));
   var destinationTest = destination.substring(0, Math.min(migration.name.length, destination.length));
-  return migrationTest >= destinationTest;
+
+  //we want to execute until, but not execute the down migration of the target
+  return migrationTest > destinationTest;
 }
 
 function filterCompleted(allMigrations, completedMigrations) {
@@ -57,17 +59,17 @@ exports.filterDown = function(completedMigrations, destination, count) {
   }).slice(0, count);
 };
 
-exports.syncMode = function(completedMigrations, destination) {
+exports.syncMode = function(allMigrations, completedMigrations, destination) {
 
   var isDown = isIncludedInDown(
-    completedMigrations[completedMigrations.length -1],
+    completedMigrations[0],
     destination
   );
 
   if(isDown)
-    return 1;
-  else
     return 0;
+  else
+    return 1;
 };
 
 /**
