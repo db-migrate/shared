@@ -59,7 +59,7 @@ exports.filterDown = function(completedMigrations, destination, count) {
   }).slice(0, count);
 };
 
-exports.syncMode = function(allMigrations, completedMigrations, destination) {
+exports.syncMode = function(completedMigrations, destination) {
 
   var isDown = isIncludedInDown(
     completedMigrations[0],
