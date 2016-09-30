@@ -9,9 +9,27 @@ function isIncludedInUp(migration, destination) {
   return migrationTest <= destinationTest;
 }
 
-exports.filterUp = function(allMigrations, completedMigrations, destination, count) {
+function isIncludedInDown(migration, destination) {
+  if(!destination) {
+    return true;
+  }
+
+  var migrationTest = migration.name.substring(0, Math.min(migration.name.length, destination.length));
+  var destinationTest = destination.substring(0, Math.min(migration.name.length, destination.length));
+  return migrationTest >= destinationTest;
+}
+
+function filterCompleted(allMigrations, completedMigrations) {
   var sortFn = function(a, b) {
-    return a.name.slice(0, a.name.indexOf('-')) - b.name.slice(0, b.name.indexOf('-'));
+
+    a = a.name.slice(0, a.name.indexOf('-'));
+    b = b.name.slice(0, b.name.indexOf('-'));
+
+    if(!isNaN(a)) {
+      return a - b;
+    }
+
+    return a.localeCompare(b);
   };
 
   return allMigrations.sort(sortFn)
@@ -20,11 +38,36 @@ exports.filterUp = function(allMigrations, completedMigrations, destination, cou
       return completedMigration.name === migration.name;
     });
     return !hasRun;
-  })
+  });
+}
+
+exports.filterUp = function(allMigrations, completedMigrations, destination, count) {
+
+  return filterCompleted(allMigrations, completedMigrations)
   .filter(function(migration) {
     return isIncludedInUp(migration, destination);
-  })
-  .slice(0, count);
+  }).slice(0, count);
+};
+
+exports.filterDown = function(completedMigrations, destination, count) {
+
+  return completedMigrations
+  .filter(function(migration) {
+    return isIncludedInDown(migration, destination);
+  }).slice(0, count);
+};
+
+exports.syncMode = function(completedMigrations, destination) {
+
+  var isDown = isIncludedInDown(
+    completedMigrations[completedMigrations.length -1],
+    destination
+  );
+
+  if(isDown)
+    return 1;
+  else
+    return 0;
 };
 
 /**
@@ -121,11 +164,6 @@ exports.reduceToInterface = function(db, originInterface) {
 
   return Interface;
 };
-
-exports.filterDown = function(completedMigrations, count) {
-  return completedMigrations.slice(0, count);
-};
-
 
 exports.lpad = function(str, padChar, totalLength) {
   str = str.toString();
