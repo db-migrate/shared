@@ -10,6 +10,9 @@ function isIncludedInUp(migration, destination) {
 }
 
 function isIncludedInDown(migration, destination) {
+  if (!migration) {
+    return false;
+  }
   if(!destination) {
     return true;
   }
