@@ -45,6 +45,7 @@ function filterCompleted(allMigrations, completedMigrations) {
     return !hasRun;
   });
 }
+exports.filterCompleted = filterCompleted;
 
 exports.filterUp = function(allMigrations, completedMigrations, destination, count) {
 
