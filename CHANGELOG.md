@@ -1,3 +1,13 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/db-migrate/shared/compare/v1.1.3...v1.2.0) (2018-04-10)
+
+
+### Features
+
+* **filter-completed:** expose filter-completed ([b3feb37](https://github.com/db-migrate/shared/commit/b3feb37))
+
+
+
 <a name="1.1.3"></a>
 ## [1.1.3](https://github.com/db-migrate/shared/compare/v1.1.2...v1.1.3) (2017-02-01)
 
