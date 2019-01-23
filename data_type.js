@@ -12,6 +12,8 @@ module.exports = {
   DATE_TIME: 'datetime',
   TIME: 'time',
   BLOB: 'blob',
+  JSON: 'json',
+  JSONB: 'jsonb',
   TIMESTAMP: 'timestamp',
   BINARY: 'binary',
   BOOLEAN: 'boolean',
