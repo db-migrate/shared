@@ -15,5 +15,6 @@ module.exports = {
   TIMESTAMP: 'timestamp',
   BINARY: 'binary',
   BOOLEAN: 'boolean',
-  DECIMAL: 'decimal'
+  DECIMAL: 'decimal',
+  JSON: 'json'
 };
