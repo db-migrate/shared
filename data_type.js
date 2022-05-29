@@ -1,4 +1,5 @@
 module.exports = {
+  UUID: 'uuid',
   CHAR: 'char',
   STRING: 'string',
   TEXT: 'text',
