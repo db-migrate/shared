@@ -1,4 +1,4 @@
-this.isSilent = false;
+exports.isSilent = false;
 
 var logLevel = 15,
     escape = '"',
@@ -41,25 +41,25 @@ exports.setEscape = function( escapeChar ) {
   }
 };
 
-exports.silence = function (isSilent) {
-  return ( this.isSilent = isSilent );
+exports.silence = function (newIsSilent) {
+  return ( exports.isSilent = isSilent );
 };
 exports.info = function () {
-  if ((!this.isSilent || global.verbose) &&
+  if ((!exports.isSilent || global.verbose) &&
         logLevel & level.info) {
     Array.prototype.unshift.call(arguments, '[INFO]');
     console.info.apply(console, arguments);
   }
 };
 exports.warn = function () {
-  if ((!this.isSilent || global.verbose) &&
+  if ((!exports.isSilent || global.verbose) &&
        logLevel & level.warn) {
     Array.prototype.unshift.call(arguments, '[WARN]');
     console.warn.apply(console, arguments);
   }
 };
 exports.error = function () {
-  if ((!this.isSilent || global.verbose) &&
+  if ((!exports.isSilent || global.verbose) &&
         logLevel & level.error) {
     Array.prototype.unshift.call(arguments, '[ERROR]');
     //console.trace( 'Trace from error log' );
@@ -67,7 +67,7 @@ exports.error = function () {
   }
 };
 exports.sql = function(sql) {
-  if ((!this.isSilent && (global.dryRun || global.verbose))  &&
+  if ((!exports.isSilent && (global.dryRun || global.verbose))  &&
         logLevel & level.sql) {
     var args = Array.prototype.slice.call(arguments).slice(1);
     args = args.slice(0, args.length - 1);
