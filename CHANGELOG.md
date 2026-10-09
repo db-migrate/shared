@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/db-migrate/shared/compare/v1.2.0...v1.2.1) (2026-10-10)
+
+
+### Bug Fixes
+
+* silence holds for logs called without the log as this ([4bea785](https://github.com/db-migrate/shared/commit/4bea78569fdec2f08b283e246de516d168310a2d))
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/db-migrate/shared/compare/v1.1.3...v1.2.0) (2018-04-10)
 
